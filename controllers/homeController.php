@@ -17,7 +17,8 @@ class homeController extends controller {
 
         
 
-        $this->loadTemplate('home', $dados);
+        //$this->loadTemplate('home', $dados);
+        $this->loadView('home', $dados);
     }
 
 }
