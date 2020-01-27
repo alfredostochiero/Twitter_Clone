@@ -89,11 +89,18 @@ class usuarios extends model
 	}
 	public function getUsuarios($limite){
 		$array = array();
-		$sql ="SELECT * FROM usuarios WHERE id != '".($this->uid)."' ORDER BY RAND() LIMIT $limite";
+		$sql ="SELECT 
+		*,
+		(select count(*) from relacionamentos where relacionamentos.id_seguidor = '".($this->uid)."' AND relacionamentos.id_seguido = usuarios.id ) as seguido 
+
+		FROM usuarios WHERE id != '".($this->uid)."' ORDER BY RAND() LIMIT $limite";
 		$sql = $this->db->query($sql);
 
 		if($sql->rowCount()>0){
 			$array = $sql->fetchAll();
+
+
+
 		}
 
 		return $array;

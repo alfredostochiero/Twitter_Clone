@@ -29,4 +29,40 @@ class homeController extends controller {
         //$this->loadView('home', $dados);
     }
 
+    public function seguir($id){
+        if(!empty($id)) {
+
+            $id =  addslashes($id);
+
+            $sql = "SELECT * FROM usuarios WHERE id = '$id'";
+            $sql = $this->db->query($sql);
+
+            if ($sql->rowCount() > 0) {
+
+                $r = new relacionamentos();
+                $r->seguir($_SESSION['twlg'], $id);
+            }   
+        }  
+
+        header("Location:/PHP_B7WEB/Twitter_Clone");       
+    }
+
+    public function deseguir($id){
+        if(!empty($id)) {
+
+            $id =  addslashes($id);
+
+            $sql = "SELECT * FROM usuarios WHERE id = '$id'";
+            $sql = $this->db->query($sql);
+
+            if ($sql->rowCount() > 0) {
+
+                $r = new relacionamentos();
+                $r->deseguir($_SESSION['twlg'], $id);
+            }   
+        }  
+
+        header("Location:/PHP_B7WEB/Twitter_Clone");       
+    }
+
 }

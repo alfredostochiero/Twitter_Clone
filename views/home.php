@@ -17,7 +17,11 @@
 		<tr>
 			<td><?php echo $usuario['nome']; ?></td>
 			<td>
-				<a href="">Seguir</a>
+				<td><?php if($usuario['seguido']=='0'): ?>
+				<a href="/PHP_B7WEB/Twitter_Clone/home/seguir/<?php echo $usuario['id']; ?>">Seguir</a>
+				<?php else: ?>
+				<a href="/PHP_B7WEB/Twitter_Clone/home/deseguir/<?php echo $usuario['id']; ?>"> Deixar de Seguir</a>
+				<?php endif; ?>	
 			</td>		
 		</tr>
 	<?php endforeach ?>
