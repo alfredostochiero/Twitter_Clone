@@ -16,17 +16,30 @@ class homeController extends controller {
         $dados = array(
             'nome'=>''
         );
+        $p = new posts();
+
+        if(isset($_POST['msg']) && !empty($_POST['msg'])) {
+             $msg = addslashes($_POST['msg']);
+             $p->inserirPost($msg);
+        }
+
+
 
         $u = new usuarios($_SESSION['twlg']);  
         $dados['nome'] = $u->getNome();  
         $dados['qt_seguidos'] = $u->countSeguidos();
         $dados['qt_seguidores'] =  $u->countSeguidores();
-        $dados['sugestao'] = $u->getUsuarios(5);
+        $dados['sugestao'] = $u->getUsuarios(6);
+
+        $lista = $u->getSeguidos();
+        $lista[] = $_SESSION['twlg']; // adiciona o id do proprio usuário a lista que alimentara o feed
+        $numeroDeFeeds = 20; // número de feeds que irá aparecer
+        $dados['feed'] = $p->getFeed($lista,$numeroDeFeeds);
 
         
 
         $this->loadTemplate('home', $dados);
-        //$this->loadView('home', $dados);
+       
     }
 
     public function seguir($id){

@@ -105,4 +105,20 @@ class usuarios extends model
 
 		return $array;
 	}
+
+	public function getSeguidos () {
+		$array = array();
+		$sql = " SELECT * FROM relacionamentos WHERE id_seguidor = ' ".($this->uid)." ' ";
+		$sql = $this->db->query($sql);
+
+		if($sql->rowCount() > 0){
+			$sql = $sql->fetchAll();
+			foreach($sql as $seg){
+				$array[] = $seg['id_seguido'];
+			}
+		}
+
+
+		return $array;
+	}
 }
