@@ -1,4 +1,25 @@
-Área interna do Twitter
+<div class="feed">
+	Feeds...
+</div>
+<div class ="rightside">	
+	<h4>Relacionamentos</h4>
+	<div class="rs_meio"> <?php echo $qt_seguidores; ?>  <br/> Seguidores</div>
+	<div class="rs_meio"> <?php echo $qt_seguidos ?>  <br/> Seguindo</div>
+	<div style="clear:both"></div>
 
-
-<a href="/PHP_B7WEB/Twitter_Clone/login/sair">Sair</a>
+	<h4>Sugestões de amigos </h4>
+	<table border="0" widht="100%">
+		<tr>
+			<td width ="80%"></td>
+			<td></td>
+		</tr>
+		 <?php foreach($sugestao as $usuario): ?>
+		<tr>
+			<td><?php echo $usuario['nome']; ?></td>
+			<td>
+				<a href="">Seguir</a>
+			</td>		
+		</tr>
+	<?php endforeach ?>
+	</table>
+</div>			
